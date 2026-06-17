@@ -1,7 +1,7 @@
 env: dev
 
 backend:
-  image: kartikshah99/urlshortener-backend:4c0496c
+  image: kartikshah99/urlshortener-backend:3070c08
   replicas: 2
   port: 8000
   resources:
@@ -13,7 +13,7 @@ backend:
       memory: "256Mi"
 
 frontend:
-  image: kartikshah99/urlshortener-frontend:4c0496c
+  image: kartikshah99/urlshortener-frontend:3070c08
   replicas: 1
   port: 3000
   resources:
