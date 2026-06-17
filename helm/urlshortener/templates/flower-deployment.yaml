@@ -16,15 +16,12 @@ spec:
       containers:
         - name: flower
           image: {{ .Values.backend.image }}
-          command: ["celery", "-A", "worker.celery_app", "flower", "--port=5555"]
+          command: ["celery", "-A", "worker.celery_app", "flower", "--port=5555", "--address=0.0.0.0"]
           ports:
             - containerPort: 5555
           env:
             - name: FLOWER_PORT
-              value: ""
-          envFrom:
-            - configMapRef:
-                name: urlshortener-config
+              value: "5555"
           resources:
             requests:
               cpu: "50m"
