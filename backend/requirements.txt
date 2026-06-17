@@ -1,0 +1,12 @@
+fastapi==0.111.0
+uvicorn==0.29.0
+sqlalchemy==2.0.30
+asyncpg==0.29.0
+alembic==1.13.1
+redis==5.0.4
+celery==5.4.0
+flower==2.0.1
+prometheus-fastapi-instrumentator==6.1.0
+python-dotenv==1.0.1
+nanoid==2.0.0
+psycopg2-binary==2.9.9

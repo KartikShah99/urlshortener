@@ -1,0 +1,21 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+.terraform.lock.hcl
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Node
+node_modules/
+.next/
+
+# OS
+.DS_Store
+
+terraform-provider-aws_v5.100.0_x5/
+infra/.terraform/
+infra/.terraform.lock.hcl

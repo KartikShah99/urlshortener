@@ -1,0 +1,48 @@
+env: dev
+
+backend:
+  image: kartikshah99/urlshortener-backend:latest
+  replicas: 2
+  port: 8000
+  resources:
+    requests:
+      cpu: "100m"
+      memory: "128Mi"
+    limits:
+      cpu: "300m"
+      memory: "256Mi"
+
+frontend:
+  image: kartikshah99/urlshortener-frontend:latest
+  replicas: 1
+  port: 3000
+  resources:
+    requests:
+      cpu: "50m"
+      memory: "128Mi"
+    limits:
+      cpu: "200m"
+      memory: "256Mi"
+
+postgres:
+  image: postgres:16-alpine
+  storage: 2Gi
+  db: urlshortener
+  user: postgres
+
+redis:
+  image: redis:7-alpine
+  storage: 512Mi
+
+celery:
+  replicas: 1
+
+flower:
+  port: 5555
+
+ingress:
+  backendHost: api.52.66.229.205.nip.io
+  frontendHost: 52.66.229.205.nip.io
+  flowerHost: flower.52.66.229.205.nip.io
+
+baseUrl: "http://13.203.59.255.nip.io"
