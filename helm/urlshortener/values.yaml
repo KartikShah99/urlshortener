@@ -45,4 +45,4 @@ ingress:
   frontendHost: 52.66.229.205.nip.io
   flowerHost: flower.52.66.229.205.nip.io
 
-baseUrl: "http://13.203.59.255.nip.io"
+baseUrl: "http://52.66.229.205.nip.io"
