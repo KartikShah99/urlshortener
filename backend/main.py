@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Depends, HTTPException, Request
 from fastapi.responses import RedirectResponse
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from prometheus_fastapi_instrumentator import Instrumentator
@@ -12,6 +13,16 @@ from models import URL
 from worker import record_click
 
 app = FastAPI(title="URL Shortener API")
+
+# Add CORS middleware — must be before any routes
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 Instrumentator().instrument(app).expose(app)
 
 redis_client = aioredis.from_url(

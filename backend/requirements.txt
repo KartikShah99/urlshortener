@@ -10,3 +10,4 @@ prometheus-fastapi-instrumentator==6.1.0
 python-dotenv==1.0.1
 nanoid==2.0.0
 psycopg2-binary==2.9.9
+python-multipart==0.0.9
