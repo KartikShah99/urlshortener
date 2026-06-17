@@ -54,9 +54,10 @@ jobs:
           context: ./frontend
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/urlshortener-frontend:${{ needs.build-backend.outputs.tag }}
+          build-args: |
+            NEXT_PUBLIC_API_URL=http://api.52.66.229.205.nip.io
           cache-from: type=gha
           cache-to: type=gha,mode=max
-
   update-helm:
     runs-on: ubuntu-latest
     needs: [build-backend, build-frontend]
