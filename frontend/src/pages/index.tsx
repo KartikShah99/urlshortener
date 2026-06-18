@@ -86,7 +86,7 @@ export default function Home() {
         <div style={{ padding: 20, background: "#f0f4ff", borderRadius: 10, marginBottom: 16 }}>
           <p style={{ margin: "0 0 8px", fontSize: 13, color: "#555" }}>Your short URL:</p>
           
-            href={result.short_url}
+            <a href={result.short_url}
             target="_blank"
             rel="noreferrer"
             style={{ fontSize: 20, fontWeight: 600, color: "#5c6ef8", wordBreak: "break-all" }}
