@@ -7,6 +7,7 @@ export default function Home() {
   const [stats, setStats] = useState<{ clicks: number } | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [copied, setCopied] = useState(false)
 
   const handleShorten = async () => {
     if (!url) return
@@ -22,6 +23,19 @@ export default function Home() {
     } finally {
       setLoading(false)
     }
+  }
+
+  const handleCopy = () => {
+    if (!result) return
+    // works on both http and https
+    const el = document.createElement("textarea")
+    el.value = result.short_url
+    document.body.appendChild(el)
+    el.select()
+    document.execCommand("copy")
+    document.body.removeChild(el)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
   }
 
   const handleStats = async () => {
@@ -59,7 +73,7 @@ export default function Home() {
             opacity: loading ? 0.7 : 1
           }}
         >
-          {loading ? "Shortening..." : "Shorten"}
+          {loading ? "..." : "Shorten"}
         </button>
       </div>
 
@@ -72,7 +86,7 @@ export default function Home() {
       {result && (
         <div style={{ padding: 20, background: "#f0f4ff", borderRadius: 10, marginBottom: 16 }}>
           <p style={{ margin: "0 0 8px", fontSize: 13, color: "#555" }}>Your short URL:</p>
-          <a
+          
             href={result.short_url}
             target="_blank"
             rel="noreferrer"
@@ -80,12 +94,16 @@ export default function Home() {
           >
             {result.short_url}
           </a>
-          <div style={{ marginTop: 16, display: "flex", gap: 8 }}>
+          <div style={{ marginTop: 16, display: "flex", gap: 8, alignItems: "center" }}>
             <button
-              onClick={() => navigator.clipboard.writeText(result.short_url)}
-              style={{ padding: "8px 14px", background: "#fff", border: "1px solid #ddd", borderRadius: 6, cursor: "pointer" }}
+              onClick={handleCopy}
+              style={{
+                padding: "8px 14px", background: copied ? "#4caf50" : "#fff",
+                color: copied ? "#fff" : "#333",
+                border: "1px solid #ddd", borderRadius: 6, cursor: "pointer"
+              }}
             >
-              Copy
+              {copied ? "Copied!" : "Copy"}
             </button>
             <button
               onClick={handleStats}
