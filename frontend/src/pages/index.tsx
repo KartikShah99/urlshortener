@@ -27,7 +27,6 @@ export default function Home() {
 
   const handleCopy = () => {
     if (!result) return
-    // works on both http and https
     const el = document.createElement("textarea")
     el.value = result.short_url
     document.body.appendChild(el)
@@ -98,7 +97,8 @@ export default function Home() {
             <button
               onClick={handleCopy}
               style={{
-                padding: "8px 14px", background: copied ? "#4caf50" : "#fff",
+                padding: "8px 14px",
+                background: copied ? "#4caf50" : "#fff",
                 color: copied ? "#fff" : "#333",
                 border: "1px solid #ddd", borderRadius: 6, cursor: "pointer"
               }}
